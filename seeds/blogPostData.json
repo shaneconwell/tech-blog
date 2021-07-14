@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Name your functions",
+    "content": "Name all functions, including closures and callbacks. Avoid anonymous functions. This is especially useful when profiling a node app. Naming all functions will allow you to easily understand what you're looking at when checking a memory snapshot. Debugging production issues using a core dump (memory snapshot) might become challenging as you notice significant memory consumption from anonymous functions."
+  },
+  {
+    "title": "Use ESLint",
+    "content": "ESLint is the de-facto standard for checking possible code errors and fixing code style, not only to identify nitty-gritty spacing issues but also to detect serious code anti-patterns like developers throwing errors without classification. Though ESLint can automatically fix code styles, other tools like prettier and beautify are more powerful in formatting the fix and work in conjunction with ESLint"
+  },
+  {
+    "title": "Discover errors and downtime using APM products",
+    "content": "Monitoring and performance products (a.k.a APM) proactively gauge your codebase or API so they can automagically highlight errors, crashes, and slow parts that you were missing Otherwise: You might spend great effort on measuring API performance and downtimes, probably you’ll never be aware which are your slowest code parts under real-world scenario and how these affect the UX"
+  }
+]

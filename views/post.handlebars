@@ -1,0 +1,13 @@
+{{#if loggedIn}}
+<section class="painting">
+  {{!-- <img src="/images/{{painting.filename}}" alt="{{painting.description}}"> --}}
+  <div class="painting-details">
+    <h3>{{post.title}}</h3>
+    <p>{{post.content}}</p>
+    <p>{{format_date post.date_created}}</p>
+
+  </div>
+</section>
+{{else}}
+<a href="/login">You must login first to view this page</a>
+{{/if}}
