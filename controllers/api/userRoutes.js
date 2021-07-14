@@ -26,6 +26,13 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/dashboard', (req, res) => {
+  // Get all books from the book table
+  User.findAll().then((userData) => {
+    res.json(userData);
+  });
+});
+
 router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
@@ -64,7 +71,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  console.log(req.session.logged_in);
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();

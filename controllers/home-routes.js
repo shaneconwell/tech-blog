@@ -28,6 +28,30 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/dashboard', async (req, res) => {
+  // Get all books from the book table
+  try {
+    const dashboardData = await BlogPost.findAll({
+      where: [
+        {
+          user_id: 1,
+          // attributes: ['username'],
+        },
+      ],
+    });
+    const posts = dashboardData.map((post) =>
+      post.get({ plain: true }),
+    );
+
+    res.render('dashboard', {
+      posts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 // GET one gallery
 // Use the custom middleware before allowing the user to access the gallery
 // router.get('/gallery/:id', withAuth, async (req, res) => {

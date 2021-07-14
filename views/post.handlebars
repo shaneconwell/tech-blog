@@ -4,10 +4,8 @@
   <div class="painting-details">
     <h3>{{post.title}}</h3>
     <p>{{post.content}}</p>
-    <p>{{format_date post.date_created}}</p>
+    <p>posted by {{user_id}} on {{format_date post.date_created}}</p>
 
   </div>
 </section>
-{{else}}
-<a href="/login">You must login first to view this page</a>
 {{/if}}
