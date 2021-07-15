@@ -22,7 +22,6 @@ const loginFormHandler = async (event) => {
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
-console.log("click");
   const username = document.querySelector('#username-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
@@ -34,7 +33,7 @@ console.log("click");
     });
 
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('/');
     } else {
       alert('Failed to sign up.');
     

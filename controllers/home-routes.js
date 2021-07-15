@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
     });
 
     const posts = blogPostData.map((post) => post.get({ plain: true }));
-    console.log(posts);
     res.render('homepage', {
       posts,
       loggedIn: req.session.loggedIn,
@@ -40,7 +39,6 @@ router.get('/dashboard', withAuth,  async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-console.log(user);
     res.render('dashboard', {
       ...user,
       logged_in: true
@@ -49,36 +47,6 @@ console.log(user);
     res.status(500).json(err);
   }
 });
-// router.get('/dashboard', async (req, res) => {
-//   // Get all books from the book table
-//   try {
-//     const dashboardData = await BlogPost.findAll({
-//       where: [
-//         {
-//           user_id: 1,
-//           // attributes: ['username'],
-//         },
-//       ],
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['username'],
-//         },
-//       ]
-//     });
-//     const posts = dashboardData.map((post) =>
-//       post.get({ plain: true }),
-//     );
-
-//     res.render('dashboard', {
-//       posts,
-//       loggedIn: req.session.loggedIn,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
 
 router.get('/dashboard/new', async (req, res) => {
   try {
@@ -94,9 +62,15 @@ router.get('/dashboard/new', async (req, res) => {
 
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
-    const dbblogPostData = await BlogPost.findByPk(req.params.id);
+    const blogPostData = await BlogPost.findByPk(req.params.id, { 
+      include: [
+        {
+           model: User 
+          }
+        ],
+      });
 
-    const post = dbblogPostData.get({ plain: true });
+    const post = blogPostData.get({ plain: true });
 
     res.render('post', { post, loggedIn: req.session.loggedIn });
   } catch (err) {

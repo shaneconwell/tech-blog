@@ -26,13 +26,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.get('/dashboard', (req, res) => {
-//   // Get all books from the book table
-//   User.findAll().then((userData) => {
-//     res.json(userData);
-//   });
-// });
-
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({
