@@ -27,7 +27,12 @@
 
   ## Usage
 
- [Link to the deployed app]()
+Create a username and password to log in and being posting to The Tech Blog
+
+
+ [Link to the deployed app](https://vibrant-fromage-77328.herokuapp.com/)
+
+ ![Screenshot of the homepage for Blog](./public/images/techblog-screenshot.png)
  
 </br>
 
