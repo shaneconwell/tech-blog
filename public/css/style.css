@@ -41,13 +41,7 @@ main {
   flex-grow: 1;
 }
 
-aside {
-  flex: 0;
-  background-color: var(--tertiary);
-  padding: 80px;
-  text-align: left;
-  color: var(--light);
-}
+
 
 nav {
   display: flex;
@@ -87,30 +81,15 @@ nav a:hover {
   margin-left: 16px;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
 
-.painting {
-  width: 50%;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
-}
 
-.painting-details {
-  text-align: center;
-  padding: 10px 20px;
-  font-weight: bold;
-}
 
 /* CARDS */
 .card {
-  margin: 20px;
-  flex: 0 1 300px;
-  border: 7px double var(--dark);
-  border-radius: 10px;
+  /* margin: 10px; */
+  /* flex: 0 1 300px; */
+  border: 3px solid var(--dark);
+
   background-color: var(--light);
   color: var(--dark);
 }
@@ -130,12 +109,34 @@ img {
 
 .card header {
   color: var(--light);
-  font-weight: bold;
-  text-transform: uppercase;
+  /* font-weight: bold; */
   margin: 0;
   background-color: var(--tertiary);
-  padding: 0.625rem;
-  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+  padding: 0.1rem;
+}
+
+.card header div{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.card-title{
+  font-size: larger;
+  font-weight: bold;
+}
+.card-date{
+  font-weight: 100;
+  font-size: small;
+  font-style: italic;
+}
+/* .card header p{
+  font-weight: 100;
+  font-size: small;
+} */
+.card-content{
+  text-align: left;
+  margin: 20px;
 }
 
 .card-body {

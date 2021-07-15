@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { BlogPost, User } = require('../models');
-// Import the custom middleware
 const withAuth = require('../utils/auth');
 
 // GET all blog posts for homepage
@@ -14,13 +13,13 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-    const posts = blogPostData.map((post) =>
-      post.get({ plain: true }),
-    );
 
+    const posts = blogPostData.map((post) => post.get({ plain: true }));
+    console.log(posts);
     res.render('homepage', {
       posts,
       loggedIn: req.session.loggedIn,
+      
     });
   } catch (err) {
     console.log(err);
@@ -28,60 +27,71 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/dashboard', async (req, res) => {
-  // Get all books from the book table
+router.get('/dashboard', withAuth,  async (req, res) => {
   try {
-    const dashboardData = await BlogPost.findAll({
-      where: [
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [
         {
-          user_id: 1,
-          // attributes: ['username'],
-        },
-      ],
+           model: BlogPost 
+          }
+        ],
     });
-    const posts = dashboardData.map((post) =>
-      post.get({ plain: true }),
-    );
 
+    const user = userData.get({ plain: true });
+console.log(user);
     res.render('dashboard', {
-      posts,
-      loggedIn: req.session.loggedIn,
+      ...user,
+      logged_in: true
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
-// GET one gallery
-// Use the custom middleware before allowing the user to access the gallery
-// router.get('/gallery/:id', withAuth, async (req, res) => {
+// router.get('/dashboard', async (req, res) => {
+//   // Get all books from the book table
 //   try {
-//     const dbGalleryData = await Gallery.findByPk(req.params.id, {
-//       include: [
+//     const dashboardData = await BlogPost.findAll({
+//       where: [
 //         {
-//           model: Painting,
-//           attributes: [
-//             'id',
-//             'title',
-//             'artist',
-//             'exhibition_date',
-//             'filename',
-//             'description',
-//           ],
+//           user_id: 1,
+//           // attributes: ['username'],
 //         },
 //       ],
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['username'],
+//         },
+//       ]
 //     });
+//     const posts = dashboardData.map((post) =>
+//       post.get({ plain: true }),
+//     );
 
-//     const gallery = dbGalleryData.get({ plain: true });
-//     res.render('gallery', { gallery, loggedIn: req.session.loggedIn });
+//     res.render('dashboard', {
+//       posts,
+//       loggedIn: req.session.loggedIn,
+//     });
 //   } catch (err) {
 //     console.log(err);
 //     res.status(500).json(err);
 //   }
 // });
 
-// GET one painting
-// Use the custom middleware before allowing the user to access the painting
+router.get('/dashboard/new', async (req, res) => {
+  try {
+    res.render('newpost', {
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const dbblogPostData = await BlogPost.findByPk(req.params.id);

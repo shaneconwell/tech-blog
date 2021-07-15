@@ -1,11 +1,11 @@
-{{#each posts as |post|}}
-<div class="menu-container">
-  <div class="card-header col-md-12 text-center">
+<h1>Welcome back {{username}}!</h1>
 
+{{#each user as |user|}} 
 {{> post-details}}
 
-  </div>
-  {{/each}}
+{{/each}}
+
+<footer><a href="/dashboard/new">+ New Post</a></footer>
 
 
-<script src="/js/add-dish.js"></script>
+{{!-- <script src="/js/add-dish.js"></script> --}}
