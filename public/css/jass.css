@@ -971,7 +971,7 @@ a:hover {
 
 .btn {
   text-align: center;
-  display: inline-block;
+  display: block;
   padding: 0.5rem 1.2rem;
   margin: 0;
   text-decoration: none;

@@ -163,3 +163,19 @@ nav a:hover {
   align-content: flex-start;
   align-items: center;
 }
+
+.newPost{
+  background-color:var(--primary);
+  color:var(--light)!important;
+  text-decoration: none!important;
+}
+.dashboard{
+  justify-content: center;
+}
+/* .newPost :hover{
+  background-color:var(--secondary);
+  color:var(--light);
+  padding: 1em;
+  border-radius: 15px;
+  text-align: center;
+} */
